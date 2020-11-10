@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-webtoken",
+  "version": "1.0.0",
+  "description": "Get new NHSO Token",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon --watch app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
