@@ -26,24 +26,24 @@ fs.watch(nhsoToken, (event, filename) => {
     const token = (fs.readFileSync(nhsoToken) + '').replace(/(\r\n|\n|\r|\\n|\s|\t)/gm, '')
     console.log(`${token}`)
 
-    // const options = {
-    //   hostname: process.env.SERV,
-    //   port: process.env.PORT,
-    //   path: '/token',
-    //   method: 'POST',
-    // }
-    // const req = http.request(options, res => {
-    //   console.log(`statusCode: ${res.statusCode}`)
-    //   res.on('data', d => {
-    //     process.stdout.write(d)
-    //   })
-    // })
+    const options = {
+      hostname: process.env.SERV,
+      port: process.env.PORT,
+      path: '/token',
+      method: 'PUT',
+    }
+    const req = http.request(options, res => {
+      console.log(`statusCode: ${res.statusCode}`)
+      res.on('data', d => {
+        process.stdout.write(d)
+      })
+    })
 
-    // req.on('error', error => {
-    //   console.error(error)
-    // })
+    req.on('error', error => {
+      console.error(error)
+    })
 
-    // req.write(token)
-    // req.end()
+    req.write(token)
+    req.end()
   }
 })
