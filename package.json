@@ -4,7 +4,8 @@
   "description": "Get new NHSO Token",
   "main": "app.js",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "md5": "^2.3.0"
   },
   "scripts": {
     "start": "node app.js",
