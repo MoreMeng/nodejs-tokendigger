@@ -1,14 +1,24 @@
-# Thai Smartcard Reader with Node.js
+# Token Digger from HNSO UCAuthentication (Smart Card Authentication) Application
+
+ติดตั้งบนเครื่องที่มีการใช้โปรแกรมตรวจสอบสิทธิ์ของ สปสช. UCAuthentication โดยระบบจะทำงานอัตโนมัติเมื่อเปิดเครื่อง และจะดึงข้อมูล `token` ใหม่เมื่อมีการเสียบบัตรประชาชน login ของผู้ใช้งานทุกครั้ง
+
+## System Requirement
+- Windows 7, Windows 10
+- [NHSO UCAuthenticationMX](https://www.nhso.go.th/frontend/page-services_downloadnew.aspx) หรือเวอร์ชั่นเก่ากว่าที่ยังใช้ตรวจสอบสิทธิ์กับ สปสช. ได้อยู่
+- [NodeJS](https://nodejs.org/en/) เวอร์ชั่นใดก็ได้
+- [PM2](https://pm2.keymetrics.io/)
+- [Git](https://git-scm.com/downloads) ~2.29.2
 
 ## Installation
 
 ### Windows
 
-- Install Nodejs with [nvm-windows](https://github.com/coreybutler/nvm-windows/releases) (use node 10.16.3)
+- Install Git
+- Clone Repo `nodejs-tokendigger`
   ```bash
-  nvm install 10.16.3
-  nvm use 10.16.3
+  git clone https://github.com/MoreMeng/nodejs-tokendigger.git
   ```
+- Install Nodejs
 - Start PowerShell as Administrator and run: `npm install --global --production windows-build-tools`, or use option 2 in <https://github.com/nodejs/node-gyp#on-windows>
 - Go to `nodejs-tokendigger` and run `npm install`
 - Setup PM2
@@ -19,24 +29,14 @@
   pm2 save
   ```
 
-### Ubuntu & Pi
+## Change Client Environment
+- `TOKENPATH` คือ โฟลเดอร์ที่เก็บ `nhso_token.txt`
 
-- Install [Python 2.7.x](https://www.python.org/downloads/)
-- Run `$ sudo apt-get install libpcsclite1 libpcsclite-dev pcscd`
-- Install Nodejs with [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (use node 10.16.3)
-  ```bash
-  nvm install 10.16.3
-  nvm
-  ```
-- Go to `thai-smartcard-nodejs` and run `npm install`
-- Setup PM2
-  ```bash
-  npm install -g pm2
-  pm2 start app.js --name tokendigger
-  pm2 startup
-  pm2 save
-  ```
+- `SERV` คือ IP server เครื่องที่รับค่า `POST` จาก `nodejs-tokendigger`
 
-## Change Server Port
-
-- Default port is `9898`, change by set system environment `SMC_AGENT_PORT`.
+```ini
+TOKENPATH = 'D:/UCAuthenticationMX/nhso_token.txt'
+NODE_ENV = 'development'
+SERV = 127.0.0.1
+PORT = 8009
+```
