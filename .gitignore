@@ -41,6 +41,7 @@ typings/
 
 # Optional npm cache directory
 .npm
+.lock
 
 # Optional eslint cache
 .eslintcache
@@ -55,7 +56,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env
 
 # next.js build output
 .next
