@@ -6,7 +6,7 @@ const nhsoToken = process.env.TOKENPATH
 console.log(`Watching for file changes on ${nhsoToken}`)
 
 fs.watchFile(nhsoToken, (curr, prev) => {
-  const token = fs.readFileSync(nhsoToken)
+  const token = (fs.readFileSync(nhsoToken) + '').replace(/(\r\n|\n|\r|\\n|\s|\t)/gm, '')
   console.log(`${token}`)
 
   const options = {
@@ -16,7 +16,7 @@ fs.watchFile(nhsoToken, (curr, prev) => {
     method: 'POST',
   }
   const req = http.request(options, res => {
-    console.log (`statusCode: ${res.statusCode}`)
+    console.log(`statusCode: ${res.statusCode}`)
     res.on('data', d => {
       process.stdout.write(d)
     })
