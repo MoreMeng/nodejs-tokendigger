@@ -30,7 +30,7 @@ fs.watch(nhsoToken, (event, filename) => {
       hostname: process.env.SERV,
       port: process.env.PORT,
       path: '/token',
-      method: 'PUT',
+      method: 'POST',
     }
     const req = http.request(options, res => {
       console.log(`statusCode: ${res.statusCode}`)
